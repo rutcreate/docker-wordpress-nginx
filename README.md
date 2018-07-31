@@ -2,7 +2,7 @@
 
 ## Set up Elasticsearch
 
-Run command `$ sysctl -w vm.max_map_count=262144`
+`$ sysctl -w vm.max_map_count=262144`
 
 Please see [https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
 
@@ -34,4 +34,4 @@ server {
 
 ## Deploy Docker 
 
-Run command `$ docker stack deploy -c docker-compose.yml stack-name`
+`$ docker stack deploy -c docker-compose.yml stack-name`
