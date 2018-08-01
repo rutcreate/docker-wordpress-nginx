@@ -32,6 +32,28 @@ server {
 }
 ```
 
+## Prepare WordPress directory
+
+`$ mkdir html`
+
+We use directory named `html` by default but you also can use difference directory name. If you do, you will need to update volume in `docker-compose.yml`.
+
+For example, we use directory named `wordpress-html`.
+
+`$ mkdir wordpress-html`
+
+In `docker-compose.yml`
+
+```yml
+  services:
+    ...
+    wordpress:
+      ...
+      volumes:
+        - ./wordpress-html:/var/www/html
+    ...
+```
+
 ## Deploy Docker 
 
 `$ docker stack deploy -c docker-compose.yml stack-name`
