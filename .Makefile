@@ -1,8 +1,8 @@
 NAME = wp_test
 
-all: run
+all: deploy
 
-run:
+deploy:
 	docker stack deploy -c docker-compose.yml $(NAME)
 
 rm:
