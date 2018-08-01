@@ -35,3 +35,28 @@ server {
 ## Deploy Docker 
 
 `$ docker stack deploy -c docker-compose.yml stack-name`
+
+## Makefile
+
+This will help you easy to deploy or remove stack.
+
+Copy `.Makefile` to `Makefile`
+
+`$ cp .Makefile Makefile`
+
+Edit project name in `Makefile`
+
+```
+NAME = <your-project-name>
+...
+```
+
+### Command
+
+To deploy stack
+
+`$ make deploy` or `$ make`
+
+To remove stack
+
+`$ make rm`
