@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.15-alpine
+    volumes:
+      - ./html:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8888:80
+
+  wordpress:
+    image: wordpress:4-php7.2-fpm
+    volumes:
+      - ./html:/var/www/html
+    environment:
+      WORDPRESS_DB_PASSWORD: wordpress
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+
+  elasticsearch:
+    image: elasticsearch:5.3-alpine
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 1000m
+
+volumes:
+  db_data:
+  es_data:
+
