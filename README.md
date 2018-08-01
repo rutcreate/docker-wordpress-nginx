@@ -2,7 +2,7 @@
 
 ## Set up Elasticsearch
 
-`$ sysctl -w vm.max_map_count=262144`
+`$ sudo sysctl -w vm.max_map_count=262144`
 
 Please see [https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
 
