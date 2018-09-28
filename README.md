@@ -20,6 +20,29 @@ server {
     index index.php index.html;
 
     client_max_body_size 100M;
+    
+    location = /wp-includes/js/tinymce/wp-tinymce.php {
+        proxy_pass http://wp;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+    }
+
+    location ~* /wp-content/.*.php {
+        deny all;
+        access_log off;
+        log_not_found off;
+        return 404;
+    }
+
+    location ~* /wp-includes/.*.php {
+        deny all;
+        access_log off;
+        log_not_found off;
+        return 404;
+    }
 
     location / {
         proxy_pass http://wp;
